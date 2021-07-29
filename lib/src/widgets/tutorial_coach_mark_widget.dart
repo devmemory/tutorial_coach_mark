@@ -15,6 +15,7 @@ class TutorialCoachMarkWidget extends StatefulWidget {
     this.alignSkip = Alignment.bottomRight,
     this.textSkip = "SKIP",
     this.onClickSkip,
+    this.drawCircle = true,
     this.colorShadow = Colors.black,
     this.opacityShadow = 0.8,
     this.textStyleSkip = const TextStyle(color: Colors.white),
@@ -42,6 +43,7 @@ class TutorialCoachMarkWidget extends StatefulWidget {
   final Duration? pulseAnimationDuration;
   final Tween<double>? pulseVariation;
   final Widget? skipWidget;
+  final bool drawCircle;
 
   @override
   TutorialCoachMarkWidgetState createState() => TutorialCoachMarkWidgetState();
@@ -69,6 +71,7 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
             focusAnimationDuration: widget.focusAnimationDuration,
             pulseAnimationDuration: widget.pulseAnimationDuration,
             pulseVariation: widget.pulseVariation,
+            drawCircle: widget.drawCircle,
             clickTarget: (target) {
               widget.clickTarget?.call(target);
             },

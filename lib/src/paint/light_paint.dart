@@ -8,6 +8,7 @@ class LightPaint extends CustomPainter {
   final double sizeCircle;
   final Color colorShadow;
   final double opacityShadow;
+  final bool? drawCircle;
 
   late Paint _paintFocus;
 
@@ -15,6 +16,7 @@ class LightPaint extends CustomPainter {
     this.progress,
     this.positioned,
     this.sizeCircle, {
+    this.drawCircle,
     this.colorShadow = Colors.black,
     this.opacityShadow = 0.8,
   }) : assert(opacityShadow >= 0 && opacityShadow <= 1) {
@@ -28,11 +30,13 @@ class LightPaint extends CustomPainter {
     canvas.saveLayer(Offset.zero & size, Paint());
     canvas.drawColor(colorShadow.withOpacity(opacityShadow), BlendMode.dstATop);
 
-    var maxSize = max(size.width, size.height);
+    if (drawCircle!) {
+      var maxSize = max(size.width, size.height);
 
-    double radius = maxSize * (1 - progress) + sizeCircle;
+      double radius = maxSize * (1 - progress) + sizeCircle;
 
-    canvas.drawCircle(positioned, radius, _paintFocus);
+      canvas.drawCircle(positioned, radius, _paintFocus);
+    }
     canvas.restore();
   }
 

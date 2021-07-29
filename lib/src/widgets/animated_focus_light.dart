@@ -19,6 +19,7 @@ class AnimatedFocusLight extends StatefulWidget {
   final Duration? focusAnimationDuration;
   final Duration? pulseAnimationDuration;
   final Tween<double>? pulseVariation;
+  final bool? drawCircle;
 
   const AnimatedFocusLight({
     Key? key,
@@ -31,6 +32,7 @@ class AnimatedFocusLight extends StatefulWidget {
     this.paddingFocus = 10,
     this.colorShadow = Colors.black,
     this.opacityShadow = 0.8,
+    this.drawCircle,
     this.focusAnimationDuration,
     this.pulseAnimationDuration,
     this.pulseVariation,
@@ -299,6 +301,7 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
         _sizeCircle,
         colorShadow: target?.color ?? widget.colorShadow,
         opacityShadow: widget.opacityShadow,
+        drawCircle: widget.drawCircle
       );
     }
   }
