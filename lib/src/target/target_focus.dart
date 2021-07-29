@@ -18,6 +18,7 @@ class TargetFocus {
     this.paddingFocus,
     this.focusAnimationDuration,
     this.pulseVariation,
+    this.drawCircle = true
   }) : assert(keyTarget != null || targetPosition != null);
 
   final dynamic identify;
@@ -33,6 +34,7 @@ class TargetFocus {
   final double? paddingFocus;
   final Duration? focusAnimationDuration;
   final Tween<double>? pulseVariation;
+  final bool drawCircle;
 
   @override
   String toString() {

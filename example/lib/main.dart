@@ -160,6 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
       TargetFocus(
         identify: "Target 0",
         keyTarget: keyButton1,
+        drawCircle: false,
         contents: [
           TargetContent(
             align: ContentAlign.bottom,
