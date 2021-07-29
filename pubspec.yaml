@@ -2,6 +2,7 @@ name: tutorial_coach_mark
 description: Guide that helps you to present your app and its features in a beautiful, simple and customizable way.
 version: 1.0.3
 homepage: https://github.com/RafaelBarbosatec/tutorial_coach_mark
+publish_to: none
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
