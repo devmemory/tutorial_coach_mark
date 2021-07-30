@@ -218,10 +218,18 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
               padding: const EdgeInsets.all(20.0),
               child: IgnorePointer(
                 child: widget.skipWidget ??
-                    Text(
+                    Card(
+                      shape: RoundedRectangleBorder(
+                          side: BorderSide(color: Colors.white),
+                          borderRadius: BorderRadius.circular(30)),
+                        color: Colors.transparent,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                          child: Text(
                       widget.textSkip,
                       style: widget.textStyleSkip,
                     ),
+                        )),
               ),
             ),
           ),
