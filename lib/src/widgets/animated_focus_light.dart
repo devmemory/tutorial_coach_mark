@@ -46,6 +46,7 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
   static const BORDER_RADIUS_DEFAULT = 10.0;
   static const DEFAULT_FOCUS_ANIMATION_DURATION = Duration(milliseconds: 600);
   static const DEFAULT_PULSE_ANIMATION_DURATION = Duration(milliseconds: 500);
+
   // ignore: non_constant_identifier_names
   static Tween<double> DEFAULT_PULSE_VARIATION = Tween(begin: 1.0, end: 0.99);
   late AnimationController _controller;
@@ -98,7 +99,15 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
+      onVerticalDragEnd: (value) =>
+          Future.delayed(const Duration(milliseconds: 500)).whenComplete(() {
+        _tapHandler(overlayTap: true);
+      }),
+      onHorizontalDragEnd: (value) =>
+          Future.delayed(const Duration(milliseconds: 500)).whenComplete(() {
+        _tapHandler(overlayTap: true);
+      }),
       onTap: _targetFocus.enableOverlayTab
           ? () => _tapHandler(overlayTap: true)
           : null,
@@ -150,6 +159,7 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
   }
 
   void next() => _tapHandler();
+
   void previous() => _tapHandler(goNext: false);
 
   void _tapHandler(
@@ -293,14 +303,10 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
         opacityShadow: widget.opacityShadow,
       );
     } else {
-      return LightPaint(
-        _progressAnimated,
-        _positioned,
-        _sizeCircle,
-        colorShadow: target?.color ?? widget.colorShadow,
-        opacityShadow: widget.opacityShadow,
-        drawCircle: target?.drawCircle
-      );
+      return LightPaint(_progressAnimated, _positioned, _sizeCircle,
+          colorShadow: target?.color ?? widget.colorShadow,
+          opacityShadow: widget.opacityShadow,
+          drawCircle: target?.drawCircle);
     }
   }
 
