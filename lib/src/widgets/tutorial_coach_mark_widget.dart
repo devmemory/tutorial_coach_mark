@@ -24,7 +24,6 @@ class TutorialCoachMarkWidget extends StatefulWidget {
     this.pulseAnimationDuration,
     this.pulseVariation,
     this.skipWidget,
-    this.hideWidget,
   })  : assert(targets.length > 0),
         super(key: key);
 
@@ -43,7 +42,7 @@ class TutorialCoachMarkWidget extends StatefulWidget {
   final Duration? focusAnimationDuration;
   final Duration? pulseAnimationDuration;
   final Tween<double>? pulseVariation;
-  final Widget? skipWidget, hideWidget;
+  final Widget? skipWidget;
 
   @override
   TutorialCoachMarkWidgetState createState() => TutorialCoachMarkWidgetState();
@@ -211,35 +210,29 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
     return Align(
       alignment: currentTarget?.alignSkip ?? widget.alignSkip,
       child: SafeArea(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            widget.hideWidget ?? Container(),
-            AnimatedOpacity(
-              opacity: showContent ? 1 : 0,
-              duration: Duration(milliseconds: 300),
-              child: InkWell(
-                onTap: skip,
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: widget.skipWidget ??
-                      Card(
-                          shape: RoundedRectangleBorder(
-                              side: BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.circular(30)),
-                          color: Colors.transparent,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 4, horizontal: 12),
-                            child: Text(
-                              widget.textSkip,
-                              style: widget.textStyleSkip,
-                            ),
-                          )),
-                ),
-              ),
+        child: AnimatedOpacity(
+          opacity: showContent ? 1 : 0,
+          duration: Duration(milliseconds: 300),
+          child: InkWell(
+            onTap: skip,
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: widget.skipWidget ??
+                  Card(
+                      shape: RoundedRectangleBorder(
+                          side: BorderSide(color: Colors.white),
+                          borderRadius: BorderRadius.circular(30)),
+                      color: Colors.transparent,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 4, horizontal: 12),
+                        child: Text(
+                          widget.textSkip,
+                          style: widget.textStyleSkip,
+                        ),
+                      )),
             ),
-          ],
+          ),
         ),
       ),
     );

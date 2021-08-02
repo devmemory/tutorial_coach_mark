@@ -429,13 +429,6 @@ class _MyHomePageState extends State<MyHomePage> {
     tutorialCoachMark = TutorialCoachMark(
       context,
       targets: targets,
-      hideWidget: Row(mainAxisSize: MainAxisSize.min, children: [
-        Checkbox(value: true, onChanged: (value) {}),
-        Text(
-          '다시 보이지 않기',
-          style: TextStyle(color: Colors.white),
-        )
-      ]),
       colorShadow: Colors.red,
       textSkip: "SKIP",
       paddingFocus: 10,
