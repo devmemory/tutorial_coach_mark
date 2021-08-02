@@ -6,34 +6,34 @@ import 'package:tutorial_coach_mark/src/util.dart';
 import 'package:tutorial_coach_mark/src/widgets/animated_focus_light.dart';
 
 class TutorialCoachMarkWidget extends StatefulWidget {
-  const TutorialCoachMarkWidget({
-    Key? key,
-    required this.targets,
-    this.finish,
-    this.paddingFocus = 10,
-    this.clickTarget,
-    this.clickOverlay,
-    this.alignSkip = Alignment.bottomRight,
-    this.textSkip = "SKIP",
-    this.onClickSkip,
-    this.colorShadow = Colors.black,
-    this.opacityShadow = 0.8,
-    this.textStyleSkip = const TextStyle(color: Colors.white),
-    this.hideSkip,
-    this.focusAnimationDuration,
-    this.pulseAnimationDuration,
-    this.pulseVariation,
-    this.skipWidget,
-    this.verticalGesture,
-    this.horizontalGesture
-  })  : assert(targets.length > 0),
+  const TutorialCoachMarkWidget(
+      {Key? key,
+      required this.targets,
+      this.finish,
+      this.paddingFocus = 10,
+      this.clickTarget,
+      this.clickOverlay,
+      this.alignSkip = Alignment.bottomRight,
+      this.textSkip = "SKIP",
+      this.onClickSkip,
+      this.colorShadow = Colors.black,
+      this.opacityShadow = 0.8,
+      this.textStyleSkip = const TextStyle(color: Colors.white),
+      this.hideSkip,
+      this.focusAnimationDuration,
+      this.pulseAnimationDuration,
+      this.pulseVariation,
+      this.skipWidget,
+      this.verticalGesture,
+      this.horizontalGesture})
+      : assert(targets.length > 0),
         super(key: key);
 
   final List<TargetFocus> targets;
   final Function(TargetFocus)? clickTarget;
   final Function(TargetFocus)? clickOverlay;
-  final Function(TargetFocus)? verticalGesture;
-  final Function(TargetFocus)? horizontalGesture;
+  final Function(TargetFocus, DragEndDetails)? verticalGesture;
+  final Function(TargetFocus, DragEndDetails)? horizontalGesture;
   final Function()? finish;
   final Color colorShadow;
   final double opacityShadow;
@@ -74,11 +74,11 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
             focusAnimationDuration: widget.focusAnimationDuration,
             pulseAnimationDuration: widget.pulseAnimationDuration,
             pulseVariation: widget.pulseVariation,
-            horizontalGesture: (target){
-              widget.horizontalGesture?.call(target);
+            horizontalGesture: (target, value) {
+              widget.horizontalGesture?.call(target, value);
             },
-            verticalGesture: (target){
-              widget.verticalGesture?.call(target);
+            verticalGesture: (target, value) {
+              widget.verticalGesture?.call(target, value);
             },
             clickTarget: (target) {
               widget.clickTarget?.call(target);

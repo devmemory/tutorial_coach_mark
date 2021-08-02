@@ -11,8 +11,8 @@ class AnimatedFocusLight extends StatefulWidget {
   final Function(TargetFocus)? focus;
   final Function(TargetFocus)? clickTarget;
   final Function(TargetFocus)? clickOverlay;
-  final Function(TargetFocus)? verticalGesture;
-  final Function(TargetFocus)? horizontalGesture;
+  final Function(TargetFocus,DragEndDetails)? verticalGesture;
+  final Function(TargetFocus,DragEndDetails)? horizontalGesture;
   final Function? removeFocus;
   final Function()? finish;
   final double paddingFocus;
@@ -104,14 +104,18 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onVerticalDragEnd: (value) =>
-          Future.delayed(const Duration(milliseconds: 500)).whenComplete(() {
-        _tapHandler(overlayTap: true);
-      }),
-      onHorizontalDragEnd: (value) =>
-          Future.delayed(const Duration(milliseconds: 500)).whenComplete(() {
-        _tapHandler(overlayTap: true);
-      }),
+      onVerticalDragEnd: (value) {
+        widget.verticalGesture?.call(_targetFocus,value);
+        Future.delayed(const Duration(milliseconds: 500)).whenComplete(() {
+          _tapHandler(overlayTap: true);
+        });
+      },
+      onHorizontalDragEnd: (value) {
+        widget.horizontalGesture?.call(_targetFocus,value);
+        Future.delayed(const Duration(milliseconds: 500)).whenComplete(() {
+          _tapHandler(overlayTap: true);
+        });
+      },
       onTap: _targetFocus.enableOverlayTab
           ? () => _tapHandler(overlayTap: true)
           : null,

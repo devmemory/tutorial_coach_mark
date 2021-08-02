@@ -445,11 +445,11 @@ class _MyHomePageState extends State<MyHomePage> {
       onClickOverlay: (target) {
         print('onClickOverlay: $target');
       },
-      verticalGesture: (target){
-        print('vertical : $target');
+      verticalGesture: (target,value){
+        print('vertical : $target, ${value.velocity.pixelsPerSecond.dy}');
       },
-      horizontalGesture: (target){
-        print('horizontal : $target');
+      horizontalGesture: (target,value){
+        print('horizontal : $target, ${value.velocity.pixelsPerSecond.dx}');
       }
     )..show();
   }
