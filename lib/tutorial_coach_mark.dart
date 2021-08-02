@@ -14,6 +14,8 @@ class TutorialCoachMark {
   final List<TargetFocus> targets;
   final Function(TargetFocus)? onClickTarget;
   final Function(TargetFocus)? onClickOverlay;
+  final Function(TargetFocus)? verticalGesture;
+  final Function(TargetFocus)? horizontalGesture;
   final Function()? onFinish;
   final double paddingFocus;
   final Function()? onSkip;
@@ -45,6 +47,8 @@ class TutorialCoachMark {
       this.opacityShadow = 0.8,
       this.focusAnimationDuration = const Duration(milliseconds: 600),
       this.pulseAnimationDuration = const Duration(milliseconds: 500),
+      this.horizontalGesture,
+      this.verticalGesture,
       this.skipWidget})
       : assert(opacityShadow >= 0 && opacityShadow <= 1);
 
@@ -67,7 +71,9 @@ class TutorialCoachMark {
           opacityShadow: opacityShadow,
           focusAnimationDuration: focusAnimationDuration,
           pulseAnimationDuration: pulseAnimationDuration,
-          finish: finish
+          finish: finish,
+          horizontalGesture: horizontalGesture,
+          verticalGesture: verticalGesture,
         );
       },
     );

@@ -24,12 +24,16 @@ class TutorialCoachMarkWidget extends StatefulWidget {
     this.pulseAnimationDuration,
     this.pulseVariation,
     this.skipWidget,
+    this.verticalGesture,
+    this.horizontalGesture
   })  : assert(targets.length > 0),
         super(key: key);
 
   final List<TargetFocus> targets;
   final Function(TargetFocus)? clickTarget;
   final Function(TargetFocus)? clickOverlay;
+  final Function(TargetFocus)? verticalGesture;
+  final Function(TargetFocus)? horizontalGesture;
   final Function()? finish;
   final Color colorShadow;
   final double opacityShadow;
@@ -70,6 +74,12 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
             focusAnimationDuration: widget.focusAnimationDuration,
             pulseAnimationDuration: widget.pulseAnimationDuration,
             pulseVariation: widget.pulseVariation,
+            horizontalGesture: (target){
+              widget.horizontalGesture?.call(target);
+            },
+            verticalGesture: (target){
+              widget.verticalGesture?.call(target);
+            },
             clickTarget: (target) {
               widget.clickTarget?.call(target);
             },

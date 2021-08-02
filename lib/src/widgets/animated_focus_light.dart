@@ -11,6 +11,8 @@ class AnimatedFocusLight extends StatefulWidget {
   final Function(TargetFocus)? focus;
   final Function(TargetFocus)? clickTarget;
   final Function(TargetFocus)? clickOverlay;
+  final Function(TargetFocus)? verticalGesture;
+  final Function(TargetFocus)? horizontalGesture;
   final Function? removeFocus;
   final Function()? finish;
   final double paddingFocus;
@@ -33,6 +35,8 @@ class AnimatedFocusLight extends StatefulWidget {
     this.opacityShadow = 0.8,
     this.focusAnimationDuration,
     this.pulseAnimationDuration,
+    this.horizontalGesture,
+    this.verticalGesture,
     this.pulseVariation,
   })  : assert(targets.length > 0),
         super(key: key);
