@@ -14,6 +14,9 @@ class TargetFocus {
     this.color,
     this.enableOverlayTab = false,
     this.enableTargetTab = true,
+    this.enableHorizontal = false,
+    this.enableVertical = false,
+    this.swipeDuration = 300,
     this.alignSkip,
     this.paddingFocus,
     this.focusAnimationDuration,
@@ -35,6 +38,10 @@ class TargetFocus {
   final Duration? focusAnimationDuration;
   final Tween<double>? pulseVariation;
   final bool drawCircle;
+  final bool enableVertical;
+  final bool enableHorizontal;
+  final int swipeDuration;
+
 
   @override
   String toString() {
