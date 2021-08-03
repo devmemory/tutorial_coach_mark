@@ -247,6 +247,9 @@ class _MyHomePageState extends State<MyHomePage> {
       TargetFocus(
         identify: "Target 2",
         keyTarget: keyButton4,
+        enableTargetTab: false,
+        enableVertical: true,
+        enableHorizontal: true,
         contents: [
           TargetContent(
             align: ContentAlign.left,
@@ -302,6 +305,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
     targets.add(TargetFocus(
+      enableTargetTab: false,
+      enableVertical: true,
+      enableHorizontal: true,
       identify: "Target 3",
       keyTarget: keyButton5,
       contents: [
@@ -333,6 +339,9 @@ class _MyHomePageState extends State<MyHomePage> {
       shape: ShapeLightFocus.RRect,
     ));
     targets.add(TargetFocus(
+      enableTargetTab: false,
+      enableVertical: true,
+      enableHorizontal: true,
       identify: "Target 4",
       keyTarget: keyButton3,
       contents: [
