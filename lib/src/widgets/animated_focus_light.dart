@@ -69,6 +69,8 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
 
   bool _goNext = true;
 
+  bool _dragged = false;
+
   @override
   void initState() {
     _targetFocus = widget.targets[_currentFocus];
@@ -106,10 +108,31 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
     return GestureDetector(
       onVerticalDragEnd: (value) {
         if (_targetFocus.enableVertical) {
+          setState(() {
+            _dragged = true;
+          });
+
           widget.verticalGesture?.call(_targetFocus, value);
           Future.delayed(Duration(milliseconds: _targetFocus.swipeDuration))
               .whenComplete(() {
             _tapHandler();
+            setState(() {
+              _dragged = false;
+            });
+          });
+        }
+      },
+      onVerticalDragStart: (value) {
+        if (_targetFocus.enableVertical) {
+          setState(() {
+            _dragged = true;
+          });
+        }
+      },
+      onHorizontalDragStart: (value) {
+        if (_targetFocus.enableHorizontal) {
+          setState(() {
+            _dragged = true;
           });
         }
       },
@@ -319,7 +342,7 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
     } else {
       return LightPaint(_progressAnimated, _positioned, _sizeCircle,
           colorShadow: target?.color ?? widget.colorShadow,
-          opacityShadow: widget.opacityShadow,
+          opacityShadow: _dragged ? 0 : widget.opacityShadow,
           drawCircle: target?.drawCircle);
     }
   }

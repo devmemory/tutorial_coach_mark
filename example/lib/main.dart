@@ -161,6 +161,9 @@ class _MyHomePageState extends State<MyHomePage> {
         identify: "Target 0",
         keyTarget: keyButton1,
         drawCircle: false,
+        enableTargetTab: false,
+        enableVertical: true,
+        enableHorizontal: true,
         contents: [
           TargetContent(
             align: ContentAlign.bottom,
@@ -197,6 +200,9 @@ class _MyHomePageState extends State<MyHomePage> {
         identify: "Target 1",
         keyTarget: keyButton,
         color: Colors.purple,
+        enableTargetTab: false,
+        enableVertical: true,
+        enableHorizontal: true,
         contents: [
           TargetContent(
             align: ContentAlign.bottom,
