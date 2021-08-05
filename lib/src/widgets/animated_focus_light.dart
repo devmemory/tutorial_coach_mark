@@ -104,6 +104,11 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onVerticalDragStart: (value) {
+        if (_targetFocus.enableVertical && _targetFocus.hidingWhileScrolling) {
+          _targetFocus.hideOverlay = true;
+        }
+      },
       onVerticalDragEnd: (value) {
         if (_targetFocus.enableVertical) {
           widget.verticalGesture?.call(_targetFocus, value);
@@ -111,6 +116,12 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
               .whenComplete(() {
             _tapHandler();
           });
+        }
+      },
+      onHorizontalDragStart: (value) {
+        if (_targetFocus.enableHorizontal &&
+            _targetFocus.hidingWhileScrolling) {
+          _targetFocus.hideOverlay = true;
         }
       },
       onHorizontalDragEnd: (value) {
@@ -314,12 +325,12 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
         offset: _getPaddingFocus(),
         target: _targetPosition ?? TargetPosition(Size.zero, Offset.zero),
         radius: target?.radius ?? 0,
-        opacityShadow: widget.opacityShadow,
+        opacityShadow: _targetFocus.hideOverlay ? 0.0 : widget.opacityShadow,
       );
     } else {
       return LightPaint(_progressAnimated, _positioned, _sizeCircle,
           colorShadow: target?.color ?? widget.colorShadow,
-          opacityShadow: widget.opacityShadow,
+          opacityShadow: _targetFocus.hideOverlay ? 0.0 : widget.opacityShadow,
           drawCircle: target?.drawCircle);
     }
   }

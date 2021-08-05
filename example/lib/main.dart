@@ -163,7 +163,8 @@ class _MyHomePageState extends State<MyHomePage> {
         drawCircle: false,
         enableTargetTab: false,
         enableVertical: true,
-        enableHorizontal: true,
+        enableHorizontal: false,
+        hidingWhileScrolling: true,
         contents: [
           TargetContent(
             align: ContentAlign.bottom,
@@ -201,8 +202,9 @@ class _MyHomePageState extends State<MyHomePage> {
         keyTarget: keyButton,
         color: Colors.purple,
         enableTargetTab: false,
-        enableVertical: true,
+        enableVertical: false,
         enableHorizontal: true,
+        hidingWhileScrolling: true,
         contents: [
           TargetContent(
             align: ContentAlign.bottom,
@@ -386,6 +388,9 @@ class _MyHomePageState extends State<MyHomePage> {
     targets.add(TargetFocus(
       identify: "Target 5",
       keyTarget: keyButton2,
+      enableTargetTab: false,
+      enableVertical: true,
+      enableHorizontal: true,
       contents: [
         TargetContent(
           align: ContentAlign.top,
@@ -441,31 +446,24 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void showTutorial() {
     initTargets();
-    tutorialCoachMark = TutorialCoachMark(
-      context,
-      targets: targets,
-      colorShadow: Colors.red,
-      textSkip: "SKIP",
-      paddingFocus: 10,
-      opacityShadow: 0.8,
-      onFinish: () {
-        print("finish");
-      },
-      onClickTarget: (target) {
-        print('onClickTarget: $target');
-      },
-      onSkip: () {
-        print("skip");
-      },
-      onClickOverlay: (target) {
-        print('onClickOverlay: $target');
-      },
-      verticalGesture: (target,value){
-        print('vertical : $target, ${value.velocity.pixelsPerSecond.dy}');
-      },
-      horizontalGesture: (target,value){
-        print('horizontal : $target, ${value.velocity.pixelsPerSecond.dx}');
-      }
-    )..show();
+    tutorialCoachMark = TutorialCoachMark(context,
+        targets: targets,
+        colorShadow: Colors.red,
+        textSkip: "SKIP",
+        paddingFocus: 10,
+        opacityShadow: 0.8, onFinish: () {
+      print("finish");
+    }, onClickTarget: (target) {
+      print('onClickTarget: $target');
+    }, onSkip: () {
+      print("skip");
+    }, onClickOverlay: (target) {
+      print('onClickOverlay: $target');
+    }, verticalGesture: (target, value) {
+      print('vertical : $target, ${value.velocity.pixelsPerSecond.dy}');
+    }, horizontalGesture: (target, value) {
+      print('horizontal : $target, ${value.velocity.pixelsPerSecond.dx}');
+    })
+      ..show();
   }
 }

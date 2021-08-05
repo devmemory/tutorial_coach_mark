@@ -4,25 +4,27 @@ import 'package:tutorial_coach_mark/src/target/target_position.dart';
 import 'package:tutorial_coach_mark/src/util.dart';
 
 class TargetFocus {
-  TargetFocus({
-    this.identify,
-    this.keyTarget,
-    this.targetPosition,
-    this.contents,
-    this.shape,
-    this.radius,
-    this.color,
-    this.enableOverlayTab = false,
-    this.enableTargetTab = true,
-    this.enableHorizontal = false,
-    this.enableVertical = false,
-    this.swipeDuration = 300,
-    this.alignSkip,
-    this.paddingFocus,
-    this.focusAnimationDuration,
-    this.pulseVariation,
-    this.drawCircle = true
-  }) : assert(keyTarget != null || targetPosition != null);
+  TargetFocus(
+      {this.identify,
+      this.keyTarget,
+      this.targetPosition,
+      this.contents,
+      this.shape,
+      this.radius,
+      this.color,
+      this.enableOverlayTab = false,
+      this.enableTargetTab = true,
+      this.enableHorizontal = false,
+      this.enableVertical = false,
+      this.swipeDuration = 300,
+      this.alignSkip,
+      this.paddingFocus,
+      this.focusAnimationDuration,
+      this.pulseVariation,
+      this.hidingWhileScrolling = false,
+      this.drawCircle = true,
+      this.hideOverlay = false})
+      : assert(keyTarget != null || targetPosition != null);
 
   final dynamic identify;
   final GlobalKey? keyTarget;
@@ -41,7 +43,8 @@ class TargetFocus {
   final bool enableVertical;
   final bool enableHorizontal;
   final int swipeDuration;
-
+  bool hideOverlay;
+  final bool hidingWhileScrolling;
 
   @override
   String toString() {
