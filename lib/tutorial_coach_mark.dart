@@ -2,7 +2,6 @@ library tutorial_coach_mark;
 
 import 'package:flutter/material.dart';
 import 'package:tutorial_coach_mark/src/target/target_focus.dart';
-import 'package:tutorial_coach_mark/src/widgets/animated_focus_light.dart';
 import 'package:tutorial_coach_mark/src/widgets/tutorial_coach_mark_widget.dart';
 
 export 'package:tutorial_coach_mark/src/target/target_content.dart';
@@ -30,7 +29,7 @@ class TutorialCoachMark {
   final Duration focusAnimationDuration;
   final Duration pulseAnimationDuration;
   final Widget? skipWidget;
-  final NextPage? nextPage;
+  final Function(TargetFocus)? nextPage;
 
   OverlayEntry? _overlayEntry;
 

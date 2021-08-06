@@ -48,7 +48,7 @@ class TutorialCoachMarkWidget extends StatefulWidget {
   final Duration? pulseAnimationDuration;
   final Tween<double>? pulseVariation;
   final Widget? skipWidget;
-  final NextPage? nextPage;
+  final Function(TargetFocus)? nextPage;
 
   @override
   TutorialCoachMarkWidgetState createState() => TutorialCoachMarkWidgetState();

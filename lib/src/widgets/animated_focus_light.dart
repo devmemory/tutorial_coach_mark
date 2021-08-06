@@ -6,7 +6,7 @@ import 'package:tutorial_coach_mark/src/target/target_focus.dart';
 import 'package:tutorial_coach_mark/src/target/target_position.dart';
 import 'package:tutorial_coach_mark/src/util.dart';
 
-typedef NextPage = void Function(TargetFocus);
+// typedef NextPage = void Function(TargetFocus);
 
 class AnimatedFocusLight extends StatefulWidget {
   final List<TargetFocus> targets;
@@ -23,7 +23,7 @@ class AnimatedFocusLight extends StatefulWidget {
   final Duration? focusAnimationDuration;
   final Duration? pulseAnimationDuration;
   final Tween<double>? pulseVariation;
-  final NextPage? nextPage;
+  final Function(TargetFocus)? nextPage;
 
   const AnimatedFocusLight(
       {Key? key,
