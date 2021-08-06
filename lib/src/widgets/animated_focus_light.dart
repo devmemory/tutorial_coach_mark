@@ -6,6 +6,8 @@ import 'package:tutorial_coach_mark/src/target/target_focus.dart';
 import 'package:tutorial_coach_mark/src/target/target_position.dart';
 import 'package:tutorial_coach_mark/src/util.dart';
 
+typedef NextPage = void Function(TargetFocus);
+
 class AnimatedFocusLight extends StatefulWidget {
   final List<TargetFocus> targets;
   final Function(TargetFocus)? focus;
@@ -21,24 +23,26 @@ class AnimatedFocusLight extends StatefulWidget {
   final Duration? focusAnimationDuration;
   final Duration? pulseAnimationDuration;
   final Tween<double>? pulseVariation;
+  final NextPage? nextPage;
 
-  const AnimatedFocusLight({
-    Key? key,
-    required this.targets,
-    this.focus,
-    this.finish,
-    this.removeFocus,
-    this.clickTarget,
-    this.clickOverlay,
-    this.paddingFocus = 10,
-    this.colorShadow = Colors.black,
-    this.opacityShadow = 0.8,
-    this.focusAnimationDuration,
-    this.pulseAnimationDuration,
-    this.horizontalGesture,
-    this.verticalGesture,
-    this.pulseVariation,
-  })  : assert(targets.length > 0),
+  const AnimatedFocusLight(
+      {Key? key,
+      required this.targets,
+      this.focus,
+      this.finish,
+      this.removeFocus,
+      this.clickTarget,
+      this.clickOverlay,
+      this.paddingFocus = 10,
+      this.colorShadow = Colors.black,
+      this.opacityShadow = 0.8,
+      this.focusAnimationDuration,
+      this.pulseAnimationDuration,
+      this.horizontalGesture,
+      this.verticalGesture,
+      this.pulseVariation,
+      this.nextPage})
+      : assert(targets.length > 0),
         super(key: key);
 
   @override
@@ -207,6 +211,9 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
     }
     if (overlayTap) {
       widget.clickOverlay?.call(_targetFocus);
+    }
+    if (widget.nextPage != null) {
+      widget.nextPage!(_targetFocus);
     }
   }
 

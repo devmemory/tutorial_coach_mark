@@ -25,7 +25,8 @@ class TutorialCoachMarkWidget extends StatefulWidget {
       this.pulseVariation,
       this.skipWidget,
       this.verticalGesture,
-      this.horizontalGesture})
+      this.horizontalGesture,
+      this.nextPage})
       : assert(targets.length > 0),
         super(key: key);
 
@@ -47,6 +48,7 @@ class TutorialCoachMarkWidget extends StatefulWidget {
   final Duration? pulseAnimationDuration;
   final Tween<double>? pulseVariation;
   final Widget? skipWidget;
+  final NextPage? nextPage;
 
   @override
   TutorialCoachMarkWidgetState createState() => TutorialCoachMarkWidgetState();
@@ -74,6 +76,7 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
             focusAnimationDuration: widget.focusAnimationDuration,
             pulseAnimationDuration: widget.pulseAnimationDuration,
             pulseVariation: widget.pulseVariation,
+            nextPage: widget.nextPage,
             horizontalGesture: (target, value) {
               widget.horizontalGesture?.call(target, value);
             },
@@ -226,22 +229,12 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
           child: InkWell(
             onTap: skip,
             child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: widget.skipWidget ??
-                  Card(
-                      shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.circular(30)),
-                      color: Colors.transparent,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 4, horizontal: 12),
-                        child: Text(
-                          widget.textSkip,
-                          style: widget.textStyleSkip,
-                        ),
-                      )),
-            ),
+                padding: const EdgeInsets.all(20.0),
+                child: widget.skipWidget ??
+                    Text(
+                      widget.textSkip,
+                      style: widget.textStyleSkip,
+                    )),
           ),
         ),
       ),

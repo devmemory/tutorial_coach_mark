@@ -463,6 +463,8 @@ class _MyHomePageState extends State<MyHomePage> {
       print('vertical : $target, ${value.delta.dy}');
     }, horizontalGesture: (target, value) {
       print('horizontal : $target, ${value.delta.dx}');
+    }, nextPage: (target) {
+      print('target : $target');
     })
       ..show();
   }
