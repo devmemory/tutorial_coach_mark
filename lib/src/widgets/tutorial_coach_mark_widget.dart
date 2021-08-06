@@ -32,8 +32,8 @@ class TutorialCoachMarkWidget extends StatefulWidget {
   final List<TargetFocus> targets;
   final Function(TargetFocus)? clickTarget;
   final Function(TargetFocus)? clickOverlay;
-  final Function(TargetFocus, DragEndDetails)? verticalGesture;
-  final Function(TargetFocus, DragEndDetails)? horizontalGesture;
+  final Function(TargetFocus, DragUpdateDetails)? verticalGesture;
+  final Function(TargetFocus, DragUpdateDetails)? horizontalGesture;
   final Function()? finish;
   final Color colorShadow;
   final double opacityShadow;

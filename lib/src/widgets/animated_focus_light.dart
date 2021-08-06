@@ -11,8 +11,8 @@ class AnimatedFocusLight extends StatefulWidget {
   final Function(TargetFocus)? focus;
   final Function(TargetFocus)? clickTarget;
   final Function(TargetFocus)? clickOverlay;
-  final Function(TargetFocus, DragEndDetails)? verticalGesture;
-  final Function(TargetFocus, DragEndDetails)? horizontalGesture;
+  final Function(TargetFocus, DragUpdateDetails)? verticalGesture;
+  final Function(TargetFocus, DragUpdateDetails)? horizontalGesture;
   final Function? removeFocus;
   final Function()? finish;
   final double paddingFocus;
@@ -109,9 +109,13 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
           _targetFocus.hideOverlay = true;
         }
       },
-      onVerticalDragEnd: (value) {
+      onVerticalDragUpdate: (value) {
         if (_targetFocus.enableVertical) {
           widget.verticalGesture?.call(_targetFocus, value);
+        }
+      },
+      onVerticalDragEnd: (value) {
+        if (_targetFocus.enableVertical) {
           Future.delayed(Duration(milliseconds: _targetFocus.swipeDuration))
               .whenComplete(() {
             _tapHandler();
@@ -124,9 +128,13 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
           _targetFocus.hideOverlay = true;
         }
       },
-      onHorizontalDragEnd: (value) {
+      onHorizontalDragUpdate: (value) {
         if (_targetFocus.enableHorizontal) {
           widget.horizontalGesture?.call(_targetFocus, value);
+        }
+      },
+      onHorizontalDragEnd: (value) {
+        if (_targetFocus.enableHorizontal) {
           Future.delayed(Duration(milliseconds: _targetFocus.swipeDuration))
               .whenComplete(() {
             _tapHandler();

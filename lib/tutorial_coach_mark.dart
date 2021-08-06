@@ -14,8 +14,8 @@ class TutorialCoachMark {
   final List<TargetFocus> targets;
   final Function(TargetFocus)? onClickTarget;
   final Function(TargetFocus)? onClickOverlay;
-  final Function(TargetFocus, DragEndDetails)? verticalGesture;
-  final Function(TargetFocus, DragEndDetails)? horizontalGesture;
+  final Function(TargetFocus, DragUpdateDetails)? verticalGesture;
+  final Function(TargetFocus, DragUpdateDetails)? horizontalGesture;
   final Function()? onFinish;
   final double paddingFocus;
   final Function()? onSkip;
