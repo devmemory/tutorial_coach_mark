@@ -145,6 +145,7 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
           });
         }
       },
+      onDoubleTap: _targetFocus.enableDoubleTap ? () => _tapHandler() : null,
       onTap: _targetFocus.enableOverlayTab
           ? () => _tapHandler(overlayTap: true)
           : null,
