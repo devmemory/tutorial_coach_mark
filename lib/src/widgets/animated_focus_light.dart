@@ -146,8 +146,8 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
         }
       },
       onDoubleTap: _targetFocus.enableDoubleTap
-          ? () async {
-              await _targetFocus.doubleTap;
+          ? () async{
+              await _targetFocus.doubleTap?.call();
               _tapHandler();
             }
           : null,

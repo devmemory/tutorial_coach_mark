@@ -48,7 +48,7 @@ class TargetFocus {
   bool hideOverlay;
   final bool hidingWhileScrolling;
   final bool enableDoubleTap;
-  final Future<void>? doubleTap;
+  final Future Function()? doubleTap;
 
   @override
   String toString() {
