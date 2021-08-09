@@ -65,7 +65,6 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
     return Material(
       type: MaterialType.transparency,
       child: Stack(
-        fit: StackFit.expand,
         children: <Widget>[
           AnimatedFocusLight(
             key: _focusLightKey,
@@ -216,6 +215,7 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
     }).toList();
 
     return Stack(
+      fit: StackFit.expand,
       children: children,
     );
   }
