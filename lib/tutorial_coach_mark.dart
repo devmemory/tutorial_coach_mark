@@ -14,6 +14,7 @@ class TutorialCoachMark {
   final List<TargetFocus> targets;
   final Function(TargetFocus)? onClickTarget;
   final Function(TargetFocus)? onClickOverlay;
+  final Function(TargetFocus)? doubleTap;
   final Function(TargetFocus, DragUpdateDetails)? verticalGesture;
   final Function(TargetFocus, DragUpdateDetails)? horizontalGesture;
   final Function()? onFinish;
@@ -38,6 +39,7 @@ class TutorialCoachMark {
       this.colorShadow = Colors.black,
       this.onClickTarget,
       this.onClickOverlay,
+      this.doubleTap,
       this.onFinish,
       this.paddingFocus = 10,
       this.onSkip,
@@ -62,6 +64,7 @@ class TutorialCoachMark {
           targets: targets,
           clickTarget: onClickTarget,
           clickOverlay: onClickOverlay,
+          doubleTap: doubleTap,
           paddingFocus: paddingFocus,
           onClickSkip: skip,
           alignSkip: alignSkip,

@@ -13,6 +13,7 @@ class AnimatedFocusLight extends StatefulWidget {
   final Function(TargetFocus)? focus;
   final Function(TargetFocus)? clickTarget;
   final Function(TargetFocus)? clickOverlay;
+  final Function(TargetFocus)? doubleTap;
   final Function(TargetFocus, DragUpdateDetails)? verticalGesture;
   final Function(TargetFocus, DragUpdateDetails)? horizontalGesture;
   final Function? removeFocus;
@@ -33,6 +34,7 @@ class AnimatedFocusLight extends StatefulWidget {
       this.removeFocus,
       this.clickTarget,
       this.clickOverlay,
+      this.doubleTap,
       this.paddingFocus = 10,
       this.colorShadow = Colors.black,
       this.opacityShadow = 0.8,
