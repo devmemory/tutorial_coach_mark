@@ -13,7 +13,6 @@ class TutorialCoachMarkWidget extends StatefulWidget {
       this.paddingFocus = 10,
       this.clickTarget,
       this.clickOverlay,
-        this.doubleTap,
       this.alignSkip = Alignment.bottomRight,
       this.textSkip = "SKIP",
       this.onClickSkip,
@@ -34,7 +33,6 @@ class TutorialCoachMarkWidget extends StatefulWidget {
   final List<TargetFocus> targets;
   final Function(TargetFocus)? clickTarget;
   final Function(TargetFocus)? clickOverlay;
-  final Function(TargetFocus)? doubleTap;
   final Function(TargetFocus, DragUpdateDetails)? verticalGesture;
   final Function(TargetFocus, DragUpdateDetails)? horizontalGesture;
   final Function()? finish;
@@ -90,9 +88,6 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
             },
             clickOverlay: (target) {
               widget.clickOverlay?.call(target);
-            },
-            doubleTap: (target){
-              widget.doubleTap?.call(target);
             },
             focus: (target) {
               setState(() {

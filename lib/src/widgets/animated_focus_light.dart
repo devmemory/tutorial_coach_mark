@@ -13,7 +13,6 @@ class AnimatedFocusLight extends StatefulWidget {
   final Function(TargetFocus)? focus;
   final Function(TargetFocus)? clickTarget;
   final Function(TargetFocus)? clickOverlay;
-  final Function(TargetFocus)? doubleTap;
   final Function(TargetFocus, DragUpdateDetails)? verticalGesture;
   final Function(TargetFocus, DragUpdateDetails)? horizontalGesture;
   final Function? removeFocus;
@@ -34,7 +33,6 @@ class AnimatedFocusLight extends StatefulWidget {
       this.removeFocus,
       this.clickTarget,
       this.clickOverlay,
-      this.doubleTap,
       this.paddingFocus = 10,
       this.colorShadow = Colors.black,
       this.opacityShadow = 0.8,
@@ -147,7 +145,12 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
           });
         }
       },
-      onDoubleTap: _targetFocus.enableDoubleTap ? () => _tapHandler() : null,
+      onDoubleTap: _targetFocus.enableDoubleTap
+          ? () async {
+              await _targetFocus.doubleTap;
+              _tapHandler();
+            }
+          : null,
       onTap: _targetFocus.enableOverlayTab
           ? () => _tapHandler(overlayTap: true)
           : null,

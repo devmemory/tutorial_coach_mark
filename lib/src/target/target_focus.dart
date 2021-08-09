@@ -17,6 +17,7 @@ class TargetFocus {
       this.enableHorizontal = false,
       this.enableVertical = false,
       this.enableDoubleTap = false,
+      this.doubleTap,
       this.swipeDuration = 300,
       this.alignSkip,
       this.paddingFocus,
@@ -47,6 +48,7 @@ class TargetFocus {
   bool hideOverlay;
   final bool hidingWhileScrolling;
   final bool enableDoubleTap;
+  final Future<void>? doubleTap;
 
   @override
   String toString() {
