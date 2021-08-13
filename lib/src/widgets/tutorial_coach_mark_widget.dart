@@ -115,7 +115,7 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
           ),
           AnimatedOpacity(
             opacity: showContent ? (_hided ? 0 : 1) : 0,
-            duration: Duration(milliseconds: 300),
+            duration: _hided ? Duration(milliseconds: 5) : Duration(milliseconds: 300),
             child: _buildContents(),
           ),
           _buildSkip()
