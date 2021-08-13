@@ -146,7 +146,7 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
         }
       },
       onDoubleTap: _targetFocus.enableDoubleTap
-          ? () async{
+          ? () async {
               await _targetFocus.doubleTap?.call();
               _tapHandler();
             }
@@ -164,36 +164,38 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
               if (_finishFocus) {
                 _progressAnimated = _tweenPulse.value;
               }
-              return Stack(
-                children: <Widget>[
-                  Container(
-                    width: double.maxFinite,
-                    height: double.maxFinite,
-                    child: CustomPaint(
-                      painter: _getPainter(_targetFocus),
-                    ),
-                  ),
-                  Positioned(
-                    left: (_targetPosition?.offset.dx ?? 0) -
-                        _getPaddingFocus() * 2,
-                    top: (_targetPosition?.offset.dy ?? 0) -
-                        _getPaddingFocus() * 2,
-                    child: InkWell(
-                      borderRadius: _betBorderRadiusTarget(),
-                      onTap: _targetFocus.enableTargetTab
-                          ? () => _tapHandler(targetTap: true)
-                          : null,
-                      child: Container(
-                        color: Colors.transparent,
-                        width: (_targetPosition?.size.width ?? 0) +
-                            _getPaddingFocus() * 4,
-                        height: (_targetPosition?.size.height ?? 0) +
-                            _getPaddingFocus() * 4,
-                      ),
-                    ),
-                  )
-                ],
-              );
+              return _targetFocus.hideOverlay
+                  ? Container()
+                  : Stack(
+                      children: <Widget>[
+                        Container(
+                          width: double.maxFinite,
+                          height: double.maxFinite,
+                          child: CustomPaint(
+                            painter: _getPainter(_targetFocus),
+                          ),
+                        ),
+                        Positioned(
+                          left: (_targetPosition?.offset.dx ?? 0) -
+                              _getPaddingFocus() * 2,
+                          top: (_targetPosition?.offset.dy ?? 0) -
+                              _getPaddingFocus() * 2,
+                          child: InkWell(
+                            borderRadius: _betBorderRadiusTarget(),
+                            onTap: _targetFocus.enableTargetTab
+                                ? () => _tapHandler(targetTap: true)
+                                : null,
+                            child: Container(
+                              color: Colors.transparent,
+                              width: (_targetPosition?.size.width ?? 0) +
+                                  _getPaddingFocus() * 4,
+                              height: (_targetPosition?.size.height ?? 0) +
+                                  _getPaddingFocus() * 4,
+                            ),
+                          ),
+                        )
+                      ],
+                    );
             },
           );
         },
@@ -346,12 +348,12 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
         offset: _getPaddingFocus(),
         target: _targetPosition ?? TargetPosition(Size.zero, Offset.zero),
         radius: target?.radius ?? 0,
-        opacityShadow: _targetFocus.hideOverlay ? 0.0 : widget.opacityShadow,
+        opacityShadow: widget.opacityShadow,
       );
     } else {
       return LightPaint(_progressAnimated, _positioned, _sizeCircle,
           colorShadow: target?.color ?? widget.colorShadow,
-          opacityShadow: _targetFocus.hideOverlay ? 0.0 : widget.opacityShadow,
+          opacityShadow: widget.opacityShadow,
           drawCircle: target?.drawCircle);
     }
   }
