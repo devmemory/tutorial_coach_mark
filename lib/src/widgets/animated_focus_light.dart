@@ -164,9 +164,7 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
               if (_finishFocus) {
                 _progressAnimated = _tweenPulse.value;
               }
-              return _targetFocus.hideOverlay
-                  ? Container()
-                  : Stack(
+              return Stack(
                       children: <Widget>[
                         Container(
                           width: double.maxFinite,
@@ -348,12 +346,12 @@ class AnimatedFocusLightState extends State<AnimatedFocusLight>
         offset: _getPaddingFocus(),
         target: _targetPosition ?? TargetPosition(Size.zero, Offset.zero),
         radius: target?.radius ?? 0,
-        opacityShadow: widget.opacityShadow,
+        opacityShadow: _targetFocus.hideOverlay ? 0.0 : widget.opacityShadow,
       );
     } else {
       return LightPaint(_progressAnimated, _positioned, _sizeCircle,
           colorShadow: target?.color ?? widget.colorShadow,
-          opacityShadow: widget.opacityShadow,
+          opacityShadow: _targetFocus.hideOverlay ? 0.0 : widget.opacityShadow,
           drawCircle: target?.drawCircle);
     }
   }

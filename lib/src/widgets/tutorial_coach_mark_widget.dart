@@ -58,6 +58,7 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
     implements TutorialCoachMarkController {
   final GlobalKey<AnimatedFocusLightState> _focusLightKey = GlobalKey();
   bool showContent = false;
+  bool _hided = false;
   TargetFocus? currentTarget;
 
   @override
@@ -79,9 +80,17 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
             nextPage: widget.nextPage,
             horizontalGesture: (target, value) {
               widget.horizontalGesture?.call(target, value);
+              if(!_hided && target.hidingWhileScrolling){
+                _hided = true;
+                setState(() {});
+              }
             },
             verticalGesture: (target, value) {
               widget.verticalGesture?.call(target, value);
+              if(!_hided && target.hidingWhileScrolling){
+                _hided = true;
+                setState(() {});
+              }
             },
             clickTarget: (target) {
               widget.clickTarget?.call(target);
@@ -93,6 +102,9 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
               setState(() {
                 currentTarget = target;
                 showContent = true;
+                if(_hided) {
+                  _hided = false;
+                }
               });
             },
             removeFocus: () {
@@ -102,7 +114,7 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
             },
           ),
           AnimatedOpacity(
-            opacity: showContent ? 1 : 0,
+            opacity: showContent ? (_hided ? 0 : 1) : 0,
             duration: Duration(milliseconds: 300),
             child: _buildContents(),
           ),
